@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
 
+            $table->unsignedTinyInteger('rating')->comment('1-5 stars'); // ✅ new
+            
             $table->text('content');
 
             $table->foreignId('event_id');
