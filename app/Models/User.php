@@ -62,6 +62,18 @@ class User extends Authenticatable
         return $this->role === 'admin';
     }
 
+    //to check if user is host
+    public function isHost(): bool
+    {
+    return $this->role === 'host';
+    }
+
+    //to check if user is user
+    public function isUser(): bool
+    {
+    return $this->role === 'user';
+    }
+
     /**
      * Get the user's initials
      */
