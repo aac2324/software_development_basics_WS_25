@@ -45,10 +45,9 @@
     </style>
 </head>
 
-<body class="min-h-screen flex flex-col"><!-- ⬅️ ADDED: min-h-screen flex flex-col -->
-    <header class="nx-header w-full h-14">>
-       <div class="max-w-6xl w-full mx-auto px-6 h-full flex justify-between items-center">
-         <div class="font-semibold tracking-wide text-[#e4ddff]">
+<body>
+    <header class="nx-header max-w-6xl mx-auto text-sm md:text-base mb-6 flex justify-between items-center h-14 px-6 rounded-b-xl">
+        <div class="font-semibold tracking-wide text-[#e4ddff]">
             networX Event Review Site
         </div>
 
