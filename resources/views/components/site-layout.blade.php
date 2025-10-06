@@ -4,7 +4,7 @@
     <title>All Events</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body class="">
+<body class="bg-[#0c0c12] text-white">
 <header class="max-w-6xl mx-auto bg-blue-500 text-xl text-white mb-4 flex items-center h-12">
     <div class="mr-10">
         networX Event Review Site
@@ -19,7 +19,7 @@
             {{ auth()->user()->name }} |
             <form action="{{route('logout')}}" method="post">@csrf <button type="submit">Logout</button></form>
         @else
-            login button
+            Are you logged in?
         @endauth
     </div>
 </header>
