@@ -19,12 +19,12 @@
     @endauth
 
 
-    <div class="mb-2 text-blue-800">by our reporter: {{$event->author->name}}.</div>
+    <div class="mb-2 text-blue-800">by our reporter: {{$event->host->name}}.</div>
     <div>
         {{$event->content}}
     </div>
 
-    <h2 class="text-2xl font-bold mt-4">Comments</h2>
+    <h2 class="text-2xl font-bold mt-4">Reviews</h2>
     <div>
         @foreach($event->reviews as $review)
             <div>
@@ -38,7 +38,7 @@
 
             <input type="hidden" name="event_id" value="{{$event->id}}"/>
             <div>
-                <label for="content">new review</label><br/>
+                <label for="content">New review</label><br/>
                 <textarea name="content" class="bg-gray-50 p-2 w-1/2">{{old('content')}}</textarea><br/>
                 @error('content')
                 <p class="text-red-500 text-xs mt-1">{{$message}}</p>
