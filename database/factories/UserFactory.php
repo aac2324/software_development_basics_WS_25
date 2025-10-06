@@ -32,6 +32,24 @@ class UserFactory extends Factory
         ];
     }
 
+    
+    //additional states for roles
+    public function admin(): self
+    {
+        return $this->state(fn() => ['role' => 'admin', 'email' => 'admin@admin.com']);
+    }
+
+    public function host(): self
+    {  
+       return $this->state(fn() => ['role' => 'host']);
+    }
+
+    public function normal(): self
+    {
+    return $this->state(fn() => ['role' => 'user']);
+    }
+
+
     /**
      * Indicate that the model's email address should be unverified.
      */

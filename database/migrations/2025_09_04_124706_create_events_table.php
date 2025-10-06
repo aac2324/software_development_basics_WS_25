@@ -7,17 +7,19 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * Run the migrations. definition of what columns the events table should have
      */
     public function up(): void
     {
-        Schema::create('comments', function (Blueprint $table) {
+        Schema::create('events', function (Blueprint $table) {
             $table->id();
 
+            $table->string('title');
+            $table->dateTime('starts_at');
+            $table->string('location');
+            $table->text('description')->nullable();
+            $table->foreignId('host_id');
             $table->text('content');
-
-            $table->foreignId('article_id');
-            $table->string('author');
 
             $table->timestamps();
         });
@@ -28,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('events');
     }
 };

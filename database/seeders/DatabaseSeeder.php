@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Eloquent\Factories\Sequence;   
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -19,9 +20,21 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('password'),
         ]);
 
-        \App\Models\User::factory(10)->create();
+        //create users with different roles
+        \App\Models\User::factory()
+            ->count(20)
+            ->state(new Sequence(
+                ['role' => 'host'],
+                ['role' => 'host'],
+                ['role' => 'host'],
+                ['role' => 'host'],
+                ['role' => 'host'],
+                ...array_fill(0, 15, ['role' => 'user'])
+            ))->create();
 
-        \App\Models\Article::factory(10)->create();
-        \App\Models\Comment::factory(15)->create();
+        // 10 Events mit host_id via Closure
+        \App\Models\Event::factory(30)->create();
+
+        \App\Models\Review::factory(15)->create();
     }
 }

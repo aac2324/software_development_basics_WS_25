@@ -7,32 +7,32 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Article extends Model
+class Event extends Model
 {
-    /** @use HasFactory<\Database\Factories\ArticleFactory> */
+    /** @use HasFactory<\Database\Factories\EventFactory> */
     use HasFactory;
 
     protected $guarded = [];
 
-    public function author(): BelongsTo
+    public function host(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'author_id');
+        return $this->belongsTo(User::class, 'host_id');
     }
 
-    public function comments(): HasMany
+    public function reviews(): HasMany
     {
-        return $this->hasMany(Comment::class, 'article_id');
+        return $this->hasMany(Review::class, 'event_id');
     }
 
     public function canEditOrDelete(User $user): bool
     {
-        // Admin users can always edit and delete all articles
+        // Admin users can always edit and delete all events
         if($user->isAdmin()) {
             return true;
         }
 
-        // Only the author can delete or edit his/her article
-        if($this->author_id !== $user->id) {
+        // Only the host can delete or edit his/her event
+        if($this->host_id !== $user->id) {
             return false;
         }
 

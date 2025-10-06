@@ -2,37 +2,37 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Article;
+use App\Models\Event;
 use Illuminate\Http\Request;
 
-class ArticleManagementController extends Controller
+class EventManagementController extends Controller
 {
     public function index()
     {
-        // fetch articles from DB that I am allowed to edit
-        $articles = \App\Models\Article::where('author_id', auth()->user()->id)->get();
+        // fetch events from DB that I am allowed to edit
+        $events = \App\Models\Event::where('host_id', auth()->user()->id)->get();
 
-        //dd($articles); // to quickly analyse what you loaded
+        //dd($events); // to quickly analyse what you loaded
 
-        // send articles to the view
+        // send events to the view
         // return response
-        return view('management.articles.index', compact('articles'));
+        return view('management.events.index', compact('events'));
 
     }
 
     public function show($id)
     {
-        // fetch the one article that is requested
-        $article = \App\Models\Article::find($id);
+        // fetch the one event that is requested
+        $event = \App\Models\Event::find($id);
 
         // send article to its view
         // return response
-        return view('management.articles.show', compact('article'));
+        return view('management.events.show', compact('event'));
     }
 
     public function create()
     {
-        return view('management.articles.create');
+        return view('management.events.create');
     }
 
     public function store(Request $request)
@@ -43,35 +43,35 @@ class ArticleManagementController extends Controller
             'content' => ['required', 'string'],
         ]);
 
-        $article = Article::create([
+        $event = Event::create([
             'title' => $request->title,
             'content' => $request->content,
-            'author_id' => auth()->user()->id,
+            'host_id' => auth()->user()->id,
         ]);
 
-        return redirect()->route('articles.show', $article->id);
+        return redirect()->route('events.show', $event->id);
     }
 
     public function edit($id)
     {
-        // Get the article
-        $article = \App\Models\Article::find($id);
+        // Get the event
+        $event = \App\Models\Event::find($id);
 
         // Check access rights
-        if (! $article->canEditOrDelete( auth()->user() )) {
-            return redirect()->route('articles.show', ['id' => $article->id]);
+        if (! $event->canEditOrDelete( auth()->user() )) {
+            return redirect()->route('events.show', ['id' => $event->id]);
         }
 
-        return view('management.articles.edit', compact('article'));
+        return view('management.events.edit', compact('event'));
     }
 
     public function update(Request $request, $id)
     {
         // Step 1: load the correct article from MODEL
-        $article = \App\Models\Article::find($id);
+        $event = \App\Models\Event::find($id);
 
         // Check access rights
-        if (! $article->canEditOrDelete( auth()->user() )) {
+        if (! $event->canEditOrDelete( auth()->user() )) {
             abort(403);
         }
 
@@ -82,7 +82,7 @@ class ArticleManagementController extends Controller
         ]);
 
         // Step 3: Update the changes
-        $article->update([
+        $event->update([
             'title' => $request->title,
             'content' => $request->content,
         ]);
@@ -90,22 +90,22 @@ class ArticleManagementController extends Controller
         session()->flash('specialMessage', 'Your update of the article was successful');
 
         // Redirect to show
-        return redirect()->route('articles.show', $article->id);
+        return redirect()->route('events.show', $event->id);
     }
 
     public function destroy($id)
     {
         // fetch the one article that is requested
-        $article = \App\Models\Article::find($id);
+        $event = \App\Models\Event::find($id);
 
         // Check access rights
-        if (! $article->canEditOrDelete( auth()->user() )) {
+        if (! $event->canEditOrDelete( auth()->user() )) {
             abort(403);
         }
 
-        $article->delete();
+        $event->delete();
 
-        return redirect()->route('articles.index');
+        return redirect()->route('events.index');
     }
 
 }

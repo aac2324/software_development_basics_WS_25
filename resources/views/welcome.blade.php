@@ -26,18 +26,18 @@
         </header>
 
         <div class="grid grid-cols-2 gap-6">
-            @foreach($articles as $article)
+            @foreach($events as $event)
                 <div>
-                    <h2 class="font-bold">{{$article->title}}</h2>
-                    <h3 class="italic">by {{$article->author->name}}</h3>
-                    {{$article->content}}
+                    <h2 class="font-bold">{{$event->title}}</h2>
+                    <h3 class="italic">by {{$event->host->name}}</h3>
+                    {{$event->content}}
                 </div>
             @endforeach
         </div>
 
 
         <div class="max-w-6xl mx-auto px-4 py-4 bg-green-50 border-xl shadow-2xl mb-4 text-green-700">
-            test content
+            This is test content only
         </div>
 
         @if (Route::has('login'))
