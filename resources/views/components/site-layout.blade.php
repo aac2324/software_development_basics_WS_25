@@ -52,6 +52,7 @@
         </div>
 
         <nav class="space-x-4">
+            <a href="/" class="nx-link">Home</a>
             <a href="/events" class="nx-link">All Events</a>
             <a href="/hosts" class="nx-link">All Hosts</a>
         </nav>
