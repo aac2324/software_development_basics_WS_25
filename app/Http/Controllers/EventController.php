@@ -9,16 +9,16 @@ class EventController extends Controller
 {
     public function index()
     {
-        $articles = Event::all();
+        $events = Event::all();
 
-        return view('articles.index', compact('articles'));
+        return view('events.index', compact('events'));
     }
 
     public function show($id)
     {
-        $article = Event::find($id);
+        $event = Event::find($id);
 
-        return view('articles.show', compact('article'));
+        return view('events.show', compact('event'));
     }
 
 }

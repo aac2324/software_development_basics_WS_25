@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class AuthorController extends Controller
+class HostController extends Controller
 {
     public function index()
     {
@@ -13,13 +13,13 @@ class AuthorController extends Controller
 
         // send to view + return response
 
-        return view('authors.index', compact('authors'));
+        return view('hosts.index', compact('hosts'));
     }
 
     public function show($id)
     {
         $author = \App\Models\User::find($id);
 
-        return view('authors.show', compact('author'));
+        return view('hosts.show', compact('host'));
     }
 }

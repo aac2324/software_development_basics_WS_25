@@ -8,9 +8,9 @@ class WelcomeController extends Controller
 {
     public function index()
     {
-        // Fetch latest 2 articles
-        $articles = \App\Models\Event::latest()->take(2)->get();
+        // Fetch latest 2 events
+        $events = \App\Models\Event::latest()->take(2)->get();
 
-        return view('welcome', compact('articles'));
+        return view('welcome', compact('events'));
     }
 }

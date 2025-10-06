@@ -16,7 +16,7 @@ class EventManagementController extends Controller
 
         // send articles to the view
         // return response
-        return view('management.articles.index', compact('articles'));
+        return view('management.events.index', compact('events'));
 
     }
 
@@ -27,12 +27,12 @@ class EventManagementController extends Controller
 
         // send article to its view
         // return response
-        return view('management.articles.show', compact('article'));
+        return view('management.events.show', compact('event'));
     }
 
     public function create()
     {
-        return view('management.articles.create');
+        return view('management.events.create');
     }
 
     public function store(Request $request)
@@ -46,32 +46,32 @@ class EventManagementController extends Controller
         $article = Event::create([
             'title' => $request->title,
             'content' => $request->content,
-            'author_id' => auth()->user()->id,
+            'host_id' => auth()->user()->id,
         ]);
 
-        return redirect()->route('articles.show', $article->id);
+        return redirect()->route('events.show', $event->id);
     }
 
     public function edit($id)
     {
-        // Get the article
+        // Get the event
         $article = \App\Models\Event::find($id);
 
         // Check access rights
         if (! $article->canEditOrDelete( auth()->user() )) {
-            return redirect()->route('articles.show', ['id' => $article->id]);
+            return redirect()->route('events.show', ['id' => $event->id]);
         }
 
-        return view('management.articles.edit', compact('article'));
+        return view('management.events.edit', compact('event'));
     }
 
     public function update(Request $request, $id)
     {
         // Step 1: load the correct article from MODEL
-        $article = \App\Models\Event::find($id);
+        $event = \App\Models\Event::find($id);
 
         // Check access rights
-        if (! $article->canEditOrDelete( auth()->user() )) {
+        if (! $event->canEditOrDelete( auth()->user() )) {
             abort(403);
         }
 
@@ -90,22 +90,22 @@ class EventManagementController extends Controller
         session()->flash('specialMessage', 'Your update of the article was successful');
 
         // Redirect to show
-        return redirect()->route('articles.show', $article->id);
+        return redirect()->route('events.show', $event->id);
     }
 
     public function destroy($id)
     {
         // fetch the one article that is requested
-        $article = \App\Models\Event::find($id);
+        $event = \App\Models\Event::find($id);
 
         // Check access rights
-        if (! $article->canEditOrDelete( auth()->user() )) {
+        if (! $event->canEditOrDelete( auth()->user() )) {
             abort(403);
         }
 
-        $article->delete();
+        $event->delete();
 
-        return redirect()->route('articles.index');
+        return redirect()->route('events.index');
     }
 
 }
