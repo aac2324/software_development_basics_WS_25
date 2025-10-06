@@ -13,7 +13,7 @@ class ReviewController extends Controller
         $request->validate([
             'event_id' => ['required', 'numeric'],
             'content' => ['required', 'string'],
-            'rating' => ['required', 'integer', 'between:1,5'], // ✅ new
+            'rating' => ['required', 'integer', 'between:1,5'], 
         ]);
 
         // Step 2: store the comment
@@ -21,7 +21,7 @@ class ReviewController extends Controller
             'event_id' => $request->event_id,
             'user_id'  => auth()->id(),
             'content' => $request->content,
-            'rating' => $request->rating, // ✅ new
+            'rating' => $request->rating, 
         ]);
 
         session()->flash('specialMessage', 'Your review has been submitted!');
