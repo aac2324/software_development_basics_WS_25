@@ -74,6 +74,11 @@ class User extends Authenticatable
     return $this->role === 'user';
     }
 
+    public function reviews() 
+    { 
+    return $this->hasMany(\App\Models\Review::class); // ✅ new
+}
+
     /**
      * Get the user's initials
      */
@@ -85,6 +90,7 @@ class User extends Authenticatable
             ->map(fn ($word) => Str::substr($word, 0, 1))
             ->implode('');
     }
+    
 }
 
 
