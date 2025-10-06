@@ -19,7 +19,6 @@ class ReviewFactory extends Factory
     {
         return [
             'event_id' => fake()->numberBetween(1,10), 
-            'host' => fake()->name(),
             'user_id'  => User::inRandomOrder()->value('id') ?? User::factory(), // ✅ new
             'rating'   => $this->faker->numberBetween(1,5), // ✅ new
             'content' => fake()->text(),
