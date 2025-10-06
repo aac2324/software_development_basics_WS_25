@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\HostController;
 use Illuminate\Support\Facades\Route;
 
 
