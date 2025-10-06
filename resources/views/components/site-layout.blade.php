@@ -52,9 +52,19 @@
         </div>
 
         <nav class="space-x-4">
+            <a href="/" class="nx-link">Home</a>
             <a href="/events" class="nx-link">All Events</a>
             <a href="/hosts" class="nx-link">All Hosts</a>
         </nav>
+        
+        
+        @auth
+            <a href="{{ route('events.create') }}"
+                class="nx-link inline-block ms-3 px-3 py-1.5 rounded-lg border border-white/20 hover:bg-white/10 transition">
+                + New Event
+            </a>
+        @endauth
+
 
         <div class="nx-auth text-xs md:text-sm text-zinc-300 flex items-center space-x-2">
             @auth

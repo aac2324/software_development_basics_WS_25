@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
 
             $table->string('title');
-            $table->dateTime('starts_at');
-            $table->string('location');
+            $table->dateTime('starts_at')->nullable();
+            $table->string('location')->nullable();
             $table->text('description')->nullable();
             $table->foreignId('host_id');
-            $table->text('content');
+            $table->text('content')->nullable();
 
             $table->timestamps();
         });
