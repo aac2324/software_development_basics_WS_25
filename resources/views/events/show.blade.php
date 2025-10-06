@@ -70,6 +70,14 @@
                     </div>
                 @endforelse
             </div>
+            <!-- Average Rating -->
+            @if ($event->reviews->count())
+                <p class="mt-4 text-yellow-500 text-lg">
+                    ⭐ Average rating: {{ number_format($event->reviews->avg('rating'), 1) }} / 5
+                </p>
+            @else
+                <p class="mt-4 text-gray-500">No ratings yet.</p>
+            @endif
 
             {{-- Neues Review (nur für Auth) --}}
             @auth
@@ -77,8 +85,19 @@
                     @csrf
                     <input type="hidden" name="event_id" value="{{ $event->id }}"/>
 
-                    <label for="content" class="block text-sm font-medium text-gray-300">New Review</label>
+                    {{-- New: Rating Input --}}
+                    <label for="rating" class="block font-semibold mt-4">Your Rating:</label>
+                    <select name="rating" id="rating" class="border rounded p-2">
+                        <option value="5">⭐⭐⭐⭐⭐</option>
+                        <option value="4">⭐⭐⭐⭐</option>
+                        <option value="3">⭐⭐⭐</option>
+                        <option value="2">⭐⭐</option>
+                        <option value="1">⭐</option>
+                    </select>
 
+
+                    <label for="content" class="block text-sm font-medium text-gray-300">New Review</label>
+                    
                     <textarea id="content" name="content"
                               class="w-full min-h-[140px] resize-y rounded-xl bg-white/80 text-zinc-900 placeholder-zinc-500 p-3 shadow-inner outline-none focus:ring-2 focus:ring-green-400/60"
                               placeholder="Your feedback…">{{ old('content') }}</textarea>
