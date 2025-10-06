@@ -2,9 +2,9 @@
 
             <h1 class="text-4xl font-bold">Articles overview</h1>
 
-            @foreach($articles as $article)
+            @foreach($events as $event)
                 <div>
-                    <a href="/articles/{{$article->id}}">{{ $article->title }}</a>
+                    <a href="/events/{{$event->id}}">{{ $event->title }}</a>
                 </div>
             @endforeach
 

@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Article;
+use App\Models\Event;
 use Illuminate\Http\Request;
 
-class ArticleManagementController extends Controller
+class EventManagementController extends Controller
 {
     public function index()
     {
         // fetch articles from DB that I am allowed to edit
-        $articles = \App\Models\Article::where('author_id', auth()->user()->id)->get();
+        $articles = \App\Models\Event::where('author_id', auth()->user()->id)->get();
 
         //dd($articles); // to quickly analyse what you loaded
 
@@ -23,7 +23,7 @@ class ArticleManagementController extends Controller
     public function show($id)
     {
         // fetch the one article that is requested
-        $article = \App\Models\Article::find($id);
+        $article = \App\Models\Event::find($id);
 
         // send article to its view
         // return response
@@ -43,7 +43,7 @@ class ArticleManagementController extends Controller
             'content' => ['required', 'string'],
         ]);
 
-        $article = Article::create([
+        $article = Event::create([
             'title' => $request->title,
             'content' => $request->content,
             'author_id' => auth()->user()->id,
@@ -55,7 +55,7 @@ class ArticleManagementController extends Controller
     public function edit($id)
     {
         // Get the article
-        $article = \App\Models\Article::find($id);
+        $article = \App\Models\Event::find($id);
 
         // Check access rights
         if (! $article->canEditOrDelete( auth()->user() )) {
@@ -68,7 +68,7 @@ class ArticleManagementController extends Controller
     public function update(Request $request, $id)
     {
         // Step 1: load the correct article from MODEL
-        $article = \App\Models\Article::find($id);
+        $article = \App\Models\Event::find($id);
 
         // Check access rights
         if (! $article->canEditOrDelete( auth()->user() )) {
@@ -96,7 +96,7 @@ class ArticleManagementController extends Controller
     public function destroy($id)
     {
         // fetch the one article that is requested
-        $article = \App\Models\Article::find($id);
+        $article = \App\Models\Event::find($id);
 
         // Check access rights
         if (! $article->canEditOrDelete( auth()->user() )) {

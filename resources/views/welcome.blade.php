@@ -26,11 +26,11 @@
         </header>
 
         <div class="grid grid-cols-2 gap-6">
-            @foreach($articles as $article)
+            @foreach($events as $event)
                 <div>
-                    <h2 class="font-bold">{{$article->title}}</h2>
-                    <h3 class="italic">by {{$article->author->name}}</h3>
-                    {{$article->content}}
+                    <h2 class="font-bold">{{$event->title}}</h2>
+                    <h3 class="italic">by {{$event->author->name}}</h3>
+                    {{$event->content}}
                 </div>
             @endforeach
         </div>

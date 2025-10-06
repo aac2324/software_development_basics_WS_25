@@ -4,10 +4,10 @@
 
     <x:message-block />
 
-    @foreach($articles as $article)
+    @foreach($events as $event)
         <div>
-            <a href="managament/articles/{{$article->id}}">{{ $article->title }}</a>
-            <a href="/management/articles/{{$article->id}}/edit" class="underline p-2 bg-blue-100 text-blue-500 text-sm rounded">EDIT</a>
+            <a href="managament/events/{{$event->id}}">{{ $event->title }}</a>
+            <a href="/management/events/{{$event->id}}/edit" class="underline p-2 bg-blue-100 text-blue-500 text-sm rounded">EDIT</a>
         </div>
     @endforeach
 

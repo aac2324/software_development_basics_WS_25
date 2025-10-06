@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Article extends Model
+class Event extends Model
 {
-    /** @use HasFactory<\Database\Factories\ArticleFactory> */
+    /** @use HasFactory<\Database\Factories\EventFactory> */
     use HasFactory;
 
     protected $guarded = [];
@@ -21,7 +21,7 @@ class Article extends Model
 
     public function comments(): HasMany
     {
-        return $this->hasMany(Comment::class, 'article_id');
+        return $this->hasMany(Review::class, 'article_id');
     }
 
     public function canEditOrDelete(User $user): bool

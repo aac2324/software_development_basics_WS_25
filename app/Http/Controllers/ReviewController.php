@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comment;
+use App\Models\Review;
 use Illuminate\Http\Request;
 
-class CommentController extends Controller
+class ReviewController extends Controller
 {
     public function store(Request $request)
     {
@@ -16,7 +16,7 @@ class CommentController extends Controller
         ]);
 
         // Step 2: store the comment
-        Comment::create([
+        Review::create([
             'article_id' => $request->article_id,
             'author' => 'random name',
             'content' => $request->content,

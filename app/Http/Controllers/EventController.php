@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Article;
+use App\Models\Event;
 use Illuminate\Http\Request;
 
-class ArticleController extends Controller
+class EventController extends Controller
 {
     public function index()
     {
-        $articles = Article::all();
+        $articles = Event::all();
 
         return view('articles.index', compact('articles'));
     }
 
     public function show($id)
     {
-        $article = Article::find($id);
+        $article = Event::find($id);
 
         return view('articles.show', compact('article'));
     }

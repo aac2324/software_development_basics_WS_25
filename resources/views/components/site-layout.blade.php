@@ -10,7 +10,7 @@
         SpreeDURUM!
     </div>
     <div>
-        <a href="/articles">All articles</a>
+        <a href="/events">All events</a>
         |
         <a href="/authors">All authors</a>
     </div>

@@ -6,15 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Comment extends Model
+class Review extends Model
 {
-    /** @use HasFactory<\Database\Factories\CommentFactory> */
+    /** @use HasFactory<\Database\Factories\ReviewFactory> */
     use HasFactory;
 
     protected $guarded = [];
 
     public function article(): BelongsTo
     {
-        return $this->belongsTo(Article::class, 'article_id');
+        return $this->belongsTo(Event::class, 'article_id');
     }
 }

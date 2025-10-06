@@ -54,7 +54,7 @@ class User extends Authenticatable
 
     public function articles()
     {
-        return $this->hasMany(Article::class, 'author_id');
+        return $this->hasMany(Event::class, 'author_id');
     }
 
     public function isAdmin(): bool
