@@ -39,7 +39,7 @@
             {{-- Meta --}}
             <div class="px-6 mt-3">
                 <p class="text-sm text-gray-300">
-                    by our reporter:
+                    Host:
                     <span class="text-green-300 font-medium">{{ $event->host?->name }}</span>
                 </p>
             </div>
@@ -77,7 +77,7 @@
                     @csrf
                     <input type="hidden" name="event_id" value="{{ $event->id }}"/>
 
-                    <label for="content" class="block text-sm font-medium text-gray-300">New review</label>
+                    <label for="content" class="block text-sm font-medium text-gray-300">New Review</label>
 
                     <textarea id="content" name="content"
                               class="w-full min-h-[140px] resize-y rounded-xl bg-white/80 text-zinc-900 placeholder-zinc-500 p-3 shadow-inner outline-none focus:ring-2 focus:ring-green-400/60"
