@@ -39,7 +39,7 @@ class EventManagementController extends Controller
     {
         // Step 1: validate the incoming request data
         $request->validate([
-            'title' => ['required', 'string', 'max:25', 'min:10'],
+            'title' => ['required', 'string', 'max:25', 'min:3'],
             'content' => ['required', 'string'],
         ]);
 

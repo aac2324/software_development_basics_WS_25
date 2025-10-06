@@ -14,10 +14,13 @@ return new class extends Migration
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
 
+            $table->unsignedTinyInteger('rating')->comment('1-5 stars'); 
+
             $table->text('content');
 
             $table->foreignId('event_id');
-            $table->string('host');
+            $table->foreignId('user_id'); // ✅ new
+            //hier hosts entfernt
 
             $table->timestamps();
         });
@@ -28,6 +31,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('reviews');
+        Schema::table('reviews', function (Blueprint $table) { // ✅ new
+            $table->dropColumn(['user_id', 'rating']);
+            // $table->string('host'); // nur falls du oben droppst
+        });
     }
 };

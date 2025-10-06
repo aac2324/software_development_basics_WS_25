@@ -17,4 +17,17 @@ class Review extends Model
     {
         return $this->belongsTo(Event::class, 'event_id');
     }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }   
+
+    
+    //adding stars method to convert rating to stars
+    public function stars()
+    {
+        return str_repeat('⭐', $this->rating);
+    }
+
 }

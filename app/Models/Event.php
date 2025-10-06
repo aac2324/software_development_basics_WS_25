@@ -38,4 +38,9 @@ class Event extends Model
 
         return true;
     }
-}
+
+    public function averageRating(): float
+    {
+    return round($this->reviews()->avg('rating'), 1);
+    }
+};
