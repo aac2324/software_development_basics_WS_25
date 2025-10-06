@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <title>Articles overview</title>
+    <title>All Reviews</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <body class="">
 <header class="max-w-6xl mx-auto bg-blue-500 text-xl text-white mb-4 flex items-center h-12">
     <div class="mr-10">
-        SpreeDURUM!
+        networX Event Review Site
     </div>
     <div>
         <a href="/events">All Events</a>
