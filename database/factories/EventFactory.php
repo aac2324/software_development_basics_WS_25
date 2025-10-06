@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class EventFactory extends Factory
 {
     /**
-     * Define the model's default state.
+     * Define the model's default state. definition of fake data for each column in the events table
      *
      * @return array<string, mixed>
      */
@@ -21,6 +21,9 @@ class EventFactory extends Factory
             'starts_at'   => fake()->dateTimeBetween('-30 days', '+60 days'),
             'location'    => fake()->city(),
             'description' => fake()->paragraph(),
+            'title' => fake()->sentence(),
+            'location' => fake()->city(),
+            'content' => fake()->paragraphs(3, true),
         ];
     }
 }

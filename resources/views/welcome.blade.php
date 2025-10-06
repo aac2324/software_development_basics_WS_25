@@ -29,7 +29,7 @@
             @foreach($events as $event)
                 <div>
                     <h2 class="font-bold">{{$event->title}}</h2>
-                    <h3 class="italic">by {{$event->author->name}}</h3>
+                    <h3 class="italic">by {{$event->host->name}}</h3>
                     {{$event->content}}
                 </div>
             @endforeach
