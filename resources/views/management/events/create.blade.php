@@ -28,15 +28,7 @@
                 @enderror
             </div>
 
-            {{-- Optional: Start Date (exists in your events listing) --}}
-            <div>
-                <label for="starts_at" class="block text-sm font-medium text-gray-300">Start Date & Time</label>
-                <input id="starts_at" name="starts_at" type="datetime-local" value="{{ old('starts_at') }}"
-                       class="w-full rounded-lg bg-white/80 text-zinc-900 p-2 focus:ring-2 focus:ring-green-400/50">
-                @error('starts_at')
-                    <p class="text-red-400 text-xs mt-1">{{ $message }}</p>
-                @enderror
-            </div>
+        
 
             {{-- Actions --}}
             <div class="flex items-center gap-3 pt-2">
