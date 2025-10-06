@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
 
             $table->string('title');
-            $t->dateTime('starts_at');
-            $t->string('location');
-            $t->text('description')->nullable();
+            $table->dateTime('starts_at');
+            $table->string('location');
+            $table->text('description')->nullable();
             $table->foreignId('host_id');
             $table->text('content');
 
