@@ -1,7 +1,8 @@
 <?php
-
 namespace Database\Factories;
 
+use App\Models\User;   // ✅ Import
+use App\Models\Event;  // ✅ Import
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,8 +18,10 @@ class ReviewFactory extends Factory
     public function definition(): array
     {
         return [
-            'event_id' => fake()->numberBetween(1,10),
+            'event_id' => fake()->numberBetween(1,10), 
             'host' => fake()->name(),
+            'user_id'  => User::inRandomOrder()->value('id') ?? User::factory(), // ✅ new
+            'rating'   => $this->faker->numberBetween(1,5), // ✅ new
             'content' => fake()->text(),
         ];
     }
