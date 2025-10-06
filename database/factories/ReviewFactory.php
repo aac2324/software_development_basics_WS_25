@@ -5,7 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Comment>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Review>
  */
 class CommentFactory extends Factory
 {
@@ -17,8 +17,8 @@ class CommentFactory extends Factory
     public function definition(): array
     {
         return [
-            'article_id' => fake()->numberBetween(1,10),
-            'author' => fake()->name(),
+            'event_id' => fake()->numberBetween(1,10),
+            'host' => fake()->name(),
             'content' => fake()->text(),
         ];
     }
