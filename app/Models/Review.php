@@ -13,8 +13,8 @@ class Review extends Model
 
     protected $guarded = [];
 
-    public function article(): BelongsTo
+    public function event(): BelongsTo
     {
-        return $this->belongsTo(Event::class, 'article_id');
+        return $this->belongsTo(Event::class, 'event_id');
     }
 }

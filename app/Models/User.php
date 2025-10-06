@@ -52,9 +52,9 @@ class User extends Authenticatable
     //    return $this->hasMany(Event::class, 'host_id');
     //}
 
-    public function articles()
+    public function events()
     {
-        return $this->hasMany(Event::class, 'author_id');
+        return $this->hasMany(Event::class, 'host_id');
     }
 
     public function isAdmin(): bool

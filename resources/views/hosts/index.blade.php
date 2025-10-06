@@ -1,7 +1,7 @@
 <x-site-layout>
     <ul class="list-disc pl-4">
-        @foreach($authors as $author)
-            <li>{{$author->name}}</li>
+        @foreach($hosts as $host)
+            <li>{{$host->name}}</li>
         @endforeach
 
     </ul>

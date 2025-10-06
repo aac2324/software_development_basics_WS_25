@@ -15,7 +15,7 @@ Route::get('hosts/{id}', [HostController::class, 'show']);
 Route::get('events', [\App\Http\Controllers\EventController::class, 'index'] )->name('events.index');
 Route::get('events/{id}', [\App\Http\Controllers\EventController::class, 'show'])->name('events.show');
 
-Route::post('comments', [\App\Http\Controllers\ReviewController::class, 'store'])->name('reviews.store');
+Route::post('reviews', [\App\Http\Controllers\ReviewController::class, 'store'])->name('reviews.store');
 
 
 require __DIR__.'/auth.php';

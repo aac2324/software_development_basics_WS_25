@@ -1,6 +1,6 @@
 <x-site-layout>
 
-    <h1 class="text-4xl font-bold">My Articles overview</h1>
+    <h1 class="text-4xl font-bold">My Events overview</h1>
 
     <x:message-block />
 
