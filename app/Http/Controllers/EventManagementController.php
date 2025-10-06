@@ -9,12 +9,12 @@ class EventManagementController extends Controller
 {
     public function index()
     {
-        // fetch articles from DB that I am allowed to edit
-        $articles = \App\Models\Event::where('host_id', auth()->user()->id)->get();
+        // fetch events from DB that I am allowed to edit
+        $events = \App\Models\Event::where('host_id', auth()->user()->id)->get();
 
-        //dd($articles); // to quickly analyse what you loaded
+        //dd($events); // to quickly analyse what you loaded
 
-        // send articles to the view
+        // send events to the view
         // return response
         return view('management.events.index', compact('events'));
 
@@ -22,8 +22,8 @@ class EventManagementController extends Controller
 
     public function show($id)
     {
-        // fetch the one article that is requested
-        $article = \App\Models\Event::find($id);
+        // fetch the one event that is requested
+        $event = \App\Models\Event::find($id);
 
         // send article to its view
         // return response
@@ -43,7 +43,7 @@ class EventManagementController extends Controller
             'content' => ['required', 'string'],
         ]);
 
-        $article = Event::create([
+        $event = Event::create([
             'title' => $request->title,
             'content' => $request->content,
             'host_id' => auth()->user()->id,
@@ -55,10 +55,10 @@ class EventManagementController extends Controller
     public function edit($id)
     {
         // Get the event
-        $article = \App\Models\Event::find($id);
+        $event = \App\Models\Event::find($id);
 
         // Check access rights
-        if (! $article->canEditOrDelete( auth()->user() )) {
+        if (! $event->canEditOrDelete( auth()->user() )) {
             return redirect()->route('events.show', ['id' => $event->id]);
         }
 
@@ -82,7 +82,7 @@ class EventManagementController extends Controller
         ]);
 
         // Step 3: Update the changes
-        $article->update([
+        $event->update([
             'title' => $request->title,
             'content' => $request->content,
         ]);
