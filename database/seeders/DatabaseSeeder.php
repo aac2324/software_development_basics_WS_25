@@ -32,9 +32,7 @@ class DatabaseSeeder extends Seeder
             ))->create();
 
         // 10 Events mit host_id via Closure
-        \App\Models\Event::factory(10)->create([
-            'host_id' => fn() => $host->id,
-        ]);
+        \App\Models\Event::factory(30)->create();
 
         \App\Models\Review::factory(15)->create();
     }
