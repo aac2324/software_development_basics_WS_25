@@ -37,7 +37,7 @@
 
 
         <div class="max-w-6xl mx-auto px-4 py-4 bg-green-50 border-xl shadow-2xl mb-4 text-green-700">
-            test content
+            This is test content only
         </div>
 
         @if (Route::has('login'))
