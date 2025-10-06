@@ -31,7 +31,7 @@
                             </form>
                         </div>
                     @else
-                        <span class="text-xs text-gray-400 mt-1">If something is wrong.....</span>
+                        <span class="text-xs text-gray-400 mt-1">Edit + Delete if you are the author.</span>
                     @endif
                 @endauth
             </div>
@@ -81,7 +81,7 @@
 
                     <textarea id="content" name="content"
                               class="w-full min-h-[140px] resize-y rounded-xl bg-white/80 text-zinc-900 placeholder-zinc-500 p-3 shadow-inner outline-none focus:ring-2 focus:ring-green-400/60"
-                              placeholder="Schreib dein Feedback…">{{ old('content') }}</textarea>
+                              placeholder="Your feedback…">{{ old('content') }}</textarea>
 
                     @error('content')
                         <p class="text-red-400 text-xs">{{ $message }}</p>
@@ -90,7 +90,7 @@
                     <div class="pt-1">
                         <button class="inline-flex items-center gap-2 bg-green-500/90 hover:bg-green-500 text-white text-sm font-semibold px-4 py-2 rounded-lg transition"
                                 type="submit">
-                            Put review
+                            Submit review
                         </button>
                     </div>
                 </form>
