@@ -19,12 +19,12 @@ class ReviewController extends Controller
         // Step 2: store the comment
         Review::create([
             'event_id' => $request->event_id,
-            'author' => 'random name',
+            'user_id'  => auth()->id(),
             'content' => $request->content,
             'rating' => $request->rating, // ✅ new
         ]);
 
-        session()->flash('specialMessage', 'Your comment has been posted!');
+        session()->flash('specialMessage', 'Your review has been submitted!');
 
         return redirect()->route('events.show', $request->event_id);
     }
