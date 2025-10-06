@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Event;   // ✅ wichtig
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -26,7 +28,7 @@ class EventFactory extends Factory
             'content' => fake()->paragraphs(3, true),
         ];
     }
-    
+
     // ensure host_id is set to a valid host user
     public function configure(): self
     {
