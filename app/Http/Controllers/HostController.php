@@ -9,7 +9,7 @@ class HostController extends Controller
     public function index()
     {
         // load the needed data
-        $authors = \App\Models\User::all();
+        $hosts = \App\Models\User::all();
 
         // send to view + return response
 
@@ -18,7 +18,7 @@ class HostController extends Controller
 
     public function show($id)
     {
-        $author = \App\Models\User::find($id);
+        $host = \App\Models\User::find($id);
 
         return view('hosts.show', compact('host'));
     }
