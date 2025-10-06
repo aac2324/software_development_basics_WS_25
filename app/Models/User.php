@@ -22,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role', // ✅ added anew
     ];
 
     /**
@@ -47,6 +48,10 @@ class User extends Authenticatable
         ];
     }
 
+    //public function hostsEvents() {
+    //    return $this->hasMany(Event::class, 'host_id');
+    //}
+
     public function articles()
     {
         return $this->hasMany(Article::class, 'author_id');
@@ -54,11 +59,7 @@ class User extends Authenticatable
 
     public function isAdmin(): bool
     {
-        if($this->email === 'admin@admin.com') {
-            return true;
-        }
-
-        return false;
+        return $this->role === 'admin';
     }
 
     /**
@@ -73,3 +74,5 @@ class User extends Authenticatable
             ->implode('');
     }
 }
+
+
