@@ -1,6 +1,6 @@
 <x-site-layout>
 
-            <h1 class="text-4xl font-bold">Articles overview</h1>
+            <h1 class="text-4xl font-bold">All Events</h1>
 
             @foreach($events as $event)
                 <div>
