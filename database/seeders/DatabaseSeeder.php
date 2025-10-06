@@ -19,9 +19,22 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('password'),
         ]);
 
-        \App\Models\User::factory(10)->create();
+        //create users with different roles
+        \App\Models\User::factory()
+            ->count(20)
+            ->state(new Sequence(
+                ['role' => 'host'],
+                ['role' => 'host'],
+                ['role' => 'host'],
+                ['role' => 'host'],
+                ['role' => 'host'],
+                ...array_fill(0, 15, ['role' => 'user'])
+            ))->create();
 
-        \App\Models\Event::factory(30)->create();
+        // 10 Events mit host_id via Closure
+        \App\Models\Event::factory(10)->create([
+            'host_id' => fn() => $host->id,
+        ]);
 
         \App\Models\Review::factory(15)->create();
     }
