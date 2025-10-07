@@ -32,9 +32,12 @@ class DatabaseSeeder extends Seeder
                 ...array_fill(0, 15, ['role' => 'user'])
             ))->create();
 
-        // 10 Events mit host_id via Closure
-        \App\Models\Event::factory(30)->create();
+        // ✅ Importiere Events per Command (Mapping ist dort)
+        \Artisan::call('import:events', [
+            'file' => storage_path('app/events.csv'),
+        ]);
 
-        \App\Models\Review::factory(15)->create();
+        //create reviews for events
+        \App\Models\Review::factory(20)->create();
     }
 }
