@@ -17,7 +17,6 @@ class EventManagementController extends Controller
         // send events to the view
         // return response
         return view('management.events.index', compact('events'));
-
     }
 
     public function show($id)
