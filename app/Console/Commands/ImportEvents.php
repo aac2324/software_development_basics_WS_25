@@ -30,7 +30,7 @@ class ImportEvents extends Command
         }
 
         foreach ($csv as $record) {
-            Event::create([
+            \App\Models\Event::create([
                 'title' => $record['title'],
                 'starts_at' => $record['starts_at'],
                 'location' => $record['location'],
