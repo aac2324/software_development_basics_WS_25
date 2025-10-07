@@ -21,6 +21,7 @@ class ImportEvents extends Command
         }
 
         $csv = Reader::createFromPath($file, 'r');
+        $csv->setDelimiter(';'); // ✅ Semikolon instead of comma
         $csv->setHeaderOffset(0);
 
         $hosts = User::where('role', 'host')->get();
