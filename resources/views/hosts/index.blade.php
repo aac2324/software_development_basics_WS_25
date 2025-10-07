@@ -21,18 +21,18 @@
                         </h2>
 
                         {{-- Optional Event Count --}}
-                        @if($host->organizedEvents && $host->organizedEvents->count() > 0)
+                        @if($host->events && $host->events->count() > 0)
                             <span class="text-sm text-green-400 font-medium">
-                                {{ $host->organizedEvents->count() }} {{ Str::plural('Event', $host->organizedEvents->count()) }}
+                                {{ $host->events->count() }} {{ Str::plural('Event', $host->events->count()) }}
                             </span>
                         @endif
                     </div>
 
                     {{-- Events List --}}
                     <div class="mt-3">
-                        @if($host->organizedEvents && $host->organizedEvents->count() > 0)
+                        @if($host->events && $host->events->count() > 0)
                             <ul class="space-y-2 text-gray-300 text-sm">
-                                @foreach($host->organizedEvents as $event)
+                                @foreach($host->events as $event)
                                     <li class="flex items-center gap-2">
                                         <span class="w-2 h-2 bg-green-400 rounded-full"></span>
                                         <a href="/events/{{ $event->id }}"
