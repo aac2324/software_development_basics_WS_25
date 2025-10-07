@@ -9,7 +9,11 @@ class HostController extends Controller
     public function index()
     {
         // load the needed data
-        $hosts = \App\Models\User::all();
+        $hosts = \App\Models\User::query()
+        ->where('role', 'host')        // only hosts
+        ->whereHas('events')      // only hosts with events
+        ->with('events')               // eager load events for the view
+        ->get();
 
         // send to view + return response
 
