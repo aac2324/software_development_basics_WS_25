@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
                 ...array_fill(0, 15, ['role' => 'user'])
             ))->create();
 
-        // ✅ Importiere Events per Command (Mapping ist dort)
+        // ✅ Importing Events via Command (Mapping is in app/Console/Commands/ImportEvents.php)
         \Artisan::call('import:events', [
             'file' => storage_path('app/events.csv'),
         ]);
