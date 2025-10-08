@@ -23,7 +23,7 @@ require __DIR__.'/auth.php';
  * Routes that require authentication
  */
 Route::middleware('auth')->group(function () {
-    Route::get('management/events', [\App\Http\Controllers\EventManagementController::class, 'index'])->name('events.index');
+    Route::get('management/events', [\App\Http\Controllers\EventManagementController::class, 'index'])->name('manage.events.index');
     Route::get('management/events/create', [\App\Http\Controllers\EventManagementController::class, 'create'])->name('events.create');
     Route::post('management/events', [\App\Http\Controllers\EventManagementController::class, 'store'])->name('events.store');
     Route::get('management/events/{id}/edit', [\App\Http\Controllers\EventManagementController::class, 'edit'])->name('events.edit');
