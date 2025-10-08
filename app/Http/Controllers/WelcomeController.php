@@ -8,9 +8,11 @@ class WelcomeController extends Controller
 {
     public function index()
     {
-        // Fetch latest 2 events
-        $events = \App\Models\Event::latest()->take(2)->get();
+        $events = \App\Models\Event::latest()->take(5)->get();
+        $hosts = \App\Models\User::where('role', 'host')->take(5)->get();
 
-        return view('welcome', compact('events'));
+        return view('welcome', compact('events', 'hosts'));
     }
+
+
 }
