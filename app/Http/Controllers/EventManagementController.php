@@ -17,7 +17,6 @@ class EventManagementController extends Controller
         // send events to the view
         // return response
         return view('management.events.index', compact('events'));
-
     }
 
     public function show($id)
@@ -37,18 +36,27 @@ class EventManagementController extends Controller
 
     public function store(Request $request)
     {
-        // Step 1: validate the incoming request data
+        // 1) validation of incoming request data as before
         $request->validate([
-            'title' => ['required', 'string', 'max:25', 'min:3'],
+            'title'   => ['required', 'string', 'min:3', 'max:25'],
             'content' => ['required', 'string'],
         ]);
 
+        $user = auth()->user();
+
+        // 2) event creation as before - the creator becomes the host
         $event = Event::create([
-            'title' => $request->title,
+            'title'   => $request->title,
             'content' => $request->content,
-            'host_id' => auth()->user()->id,
+            'host_id' => $user->id,
         ]);
 
+        // 3) only HERE (when creating event manually) user is promoted to host 
+        if (!in_array($user->role, ['host', 'admin'], true)) {
+            $user->update(['role' => 'host']);
+        }
+
+        // 4) Redirect to the public event show
         return redirect()->route('events.show', $event->id);
     }
 

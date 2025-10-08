@@ -77,7 +77,28 @@ class User extends Authenticatable
     public function reviews() 
     { 
     return $this->hasMany(\App\Models\Review::class); // ✅ new
-}
+    }
+    // Alle Reviews, die zu Events gehören, die dieser User hostet
+    public function hostedReviews()
+    {
+        return $this->hasManyThrough(
+            \App\Models\Review::class,   // Zielmodell
+            \App\Models\Event::class,    // Zwischentabelle
+            'host_id',                   // ForeignKey in events -> users.id
+            'event_id',                  // ForeignKey in reviews -> events.id
+            'id',                        // Lokaler Key in users
+            'id'                         // Lokaler Key in events
+        );
+    }
+
+    // Durchschnittliches Rating als Host
+    public function averageHostRating(): float
+    {
+        $avg = $this->hostedReviews()->avg('rating');
+        return $avg ? round($avg, 1) : 0.0;
+    }
+
+
 
     /**
      * Get the user's initials
