@@ -14,10 +14,16 @@
                 <a href="/events/{{ $event->id }}"
                    class="block bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-xl
                           hover:scale-[1.02] hover:border-green-300/20 transition-transform">
-                    {{-- Titel --}}
-                    <h2 class="text-xl font-bold text-gray-100 mb-1">
-                        {{ $event->title }}
-                    </h2>
+                    
+                    {{-- Titel + ⭐ Rating --}}
+                    <div class="flex items-center justify-between mb-1">
+                        <h2 class="text-xl font-bold text-gray-100">
+                            {{ $event->title }}
+                        </h2>
+                        <span class="text-sm text-yellow-400 font-semibold">
+                            ⭐ {{ number_format($event->averageRating(), 1) }} / 5
+                        </span>
+                    </div>
 
                     {{-- Host --}}
                     <p class="italic text-sm text-gray-400 mb-3">
