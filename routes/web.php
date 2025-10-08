@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Route;
  */
 Route::get('/', [\App\Http\Controllers\WelcomeController::class, 'index'])->name('home');
 
-Route::get('hosts', [HostController::class, 'index']);
-Route::get('hosts/{id}', [HostController::class, 'show']);
+Route::get('hosts', [HostController::class, 'index'])->name('hosts.index');
+Route::get('hosts/{id}', [HostController::class, 'show'])->name('hosts.show');
 
 Route::get('events', [\App\Http\Controllers\EventController::class, 'index'] )->name('events.index');
 Route::get('events/{id}', [\App\Http\Controllers\EventController::class, 'show'])->name('events.show');
