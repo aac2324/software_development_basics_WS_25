@@ -1,52 +1,72 @@
 <x-site-layout>
+    <div class="max-w-5xl mx-auto px-6 py-12 text-white">
 
-    {{-- HEADER --}}
-    <header class="w-full lg:max-w-5xl mx-auto mb-10 flex justify-between items-center px-6 py-4 bg-white/5 backdrop-blur-md rounded-xl shadow-lg border border-white/10">
-        <h1 class="text-2xl font-extrabold text-gray-100 tracking-tight">networ<span class="text-green-400">X</span></h1>
+        {{-- Hero --}}
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold mb-3">
+                Welcome to <span class="text-green-400">networX</span>
+            </h1>
+            <p class="text-white/70 max-w-2xl mx-auto leading-relaxed">
+                The student event hub — discover, rate, and revisit experiences across your community.
+            </p>
+        </div>
 
-        @if (Route::has('login'))
-            <nav class="flex items-center gap-3 text-sm">
-                @auth
-                    <span class="text-gray-300">Welcome, {{ auth()->user()->name }}</span>
-                @else
-                    <a href="{{ route('login') }}"
-                       class="px-4 py-1.5 rounded-lg text-gray-100 hover:text-green-400 transition">
-                        Log in
-                    </a>
-                    @if (Route::has('register'))
-                        <a href="{{ route('register') }}"
-                           class="px-4 py-1.5 rounded-lg border border-white/20 text-gray-200 hover:bg-white/10 transition">
-                            Register
-                        </a>
+        {{-- Upcoming Events --}}
+        <section class="mb-14">
+            <div class="flex justify-between items-center mb-5">
+                <h2 class="text-2xl font-semibold">Upcoming Events</h2>
+                <a href="{{ route('events.index') }}" class="text-green-400 hover:text-green-300 transition">
+                    View all →
+                </a>
+            </div>
+
+            @forelse($events ?? [] as $event)
+                <a href="{{ route('events.show', $event->id) }}"
+                   class="block p-5 mb-4 rounded-2xl border border-white/10 bg-white/5 dark:bg-zinc-800/60
+                          backdrop-blur-md hover:border-green-400/30 hover:scale-[1.01] transition">
+                    <h3 class="text-lg font-semibold">{{ $event->title }}</h3>
+                    <p class="text-sm text-white/60">
+                        by {{ $event->host?->name ?? 'Unknown host' }}
+                    </p>
+
+                    <p class="mt-2 text-sm text-white/80 leading-relaxed">
+                        {{ Str::limit($event->description ?? $event->content ?? 'No description available', 120) }}
+                    </p>
+
+                    @if(!empty($event->starts_at))
+                        <p class="mt-3 text-xs text-green-400">
+                            📅 {{ \Carbon\Carbon::parse($event->starts_at)->format('d M Y, H:i') }}
+                        </p>
                     @endif
-                @endauth
-            </nav>
-        @endif
-    </header>
+                </a>
+            @empty
+                <p class="text-sm text-white/60">No upcoming events yet.</p>
+            @endforelse
+        </section>
 
-    {{-- EVENT GRID --}}
-    <section class="max-w-6xl mx-auto px-6 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        @forelse($events as $event)
-            <div class="glass bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-5 hover:scale-[1.02] transition-transform shadow-xl">
-                <h2 class="text-xl font-bold text-gray-100 mb-1">{{ $event->title }}</h2>
-                <h3 class="italic text-sm text-gray-400 mb-3">by {{ $event->host->name }}</h3>
-                <p class="text-gray-300 leading-relaxed">
-                    {{ Str::limit($event->description ?? $event->content, 120) }}
-                </p>
-                <div class="mt-4 text-sm text-green-400">
-                {{ \Carbon\Carbon::parse($event->starts_at)->format('d.m.Y H:i') }}
+        {{-- Hosts --}}
+        <section>
+            <div class="flex justify-between items-center mb-5">
+                <h2 class="text-2xl font-semibold">Featured Hosts</h2>
+                <a href="{{ route('hosts.index') }}" class="text-green-400 hover:text-green-300 transition">
+                    See all →
+                </a>
+            </div>
+
+            @forelse($hosts ?? [] as $host)
+                <div class="p-5 mb-4 rounded-2xl border border-white/10 bg-white/5 dark:bg-zinc-800/60
+                            backdrop-blur-md hover:border-green-400/30 transition">
+                    <div class="flex items-center justify-between">
+                        <h3 class="font-semibold">{{ $host->name }}</h3>
+                        <span class="text-xs text-green-400">
+                            {{ $host->events->count() }} events
+                        </span>
+                    </div>
                 </div>
-            </div>
-        @empty
-            <div class="col-span-full text-center text-gray-400">
-                Noch keine Events vorhanden.
-            </div>
-        @endforelse
-    </section>
+            @empty
+                <p class="text-sm text-white/60">No hosts found yet.</p>
+            @endforelse
+        </section>
 
-    {{-- FOOTER / INFO BOX --}}
-    <footer class="max-w-6xl mx-auto mt-12 px-6 py-6 bg-gradient-to-r from-green-400/10 to-green-200/5 border border-green-300/20 rounded-2xl shadow-lg text-center text-green-200">
-        <p class="text-sm">
-        </p>
-    </footer>
+    </div>
 </x-site-layout>

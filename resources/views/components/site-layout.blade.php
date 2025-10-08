@@ -47,7 +47,7 @@
 
 <body>
     <header class="nx-header max-w-6xl mx-auto text-sm md:text-base mb-6 flex justify-between items-center h-14 px-6 rounded-b-xl">
-        <div class="font-semibold tracking-wide text-[#e4ddff]">
+        <div class="font-semibold tracking-wide text-[#8e72f4]">
             networX Event Review Site
         </div>
 

@@ -19,10 +19,13 @@ return new class extends Migration
             $table->text('content');
 
             $table->foreignId('event_id');
-            $table->foreignId('user_id'); // ✅ new
+            $table->foreignId('user_id');
             //hier hosts entfernt
 
             $table->timestamps();
+
+            // ✅ ensure one review per user per event
+            $table->unique(['user_id', 'event_id']);
         });
     }
 
@@ -31,7 +34,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('reviews', function (Blueprint $table) { // ✅ new
+        Schema::table('reviews', function (Blueprint $table) { 
             $table->dropColumn(['user_id', 'rating']);
             // $table->string('host'); // nur falls du oben droppst
         });

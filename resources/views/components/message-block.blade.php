@@ -1,5 +1,5 @@
 @if(session()->has('specialMessage'))
-    <div class="bg-green-50 p-2 border border-green-500 text-black rounded mb-4">
-        {{ session()->get('specialMessage') }}
+    <div class="bg-green-50 p-3 border border-green-400 rounded-lg text-sm text-green-700 mb-4">
+        {{ session('specialMessage') }}
     </div>
 @endif
