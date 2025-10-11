@@ -69,11 +69,15 @@
         <div class="nx-auth text-xs md:text-sm text-zinc-300 flex items-center space-x-2">
             @auth
                 <span class="text-zinc-200">{{ auth()->user()->name }}</span>
-                <form action="{{ route('logout') }}" method="post" class="inline">@csrf
+                <form action="{{ route('logout') }}" method="post" class="inline">
+                    @csrf
                     <button type="submit" class="nx-link underline underline-offset-2">Logout</button>
                 </form>
             @else
-                <span class="text-zinc-400">Are you logged in?</span>
+                <a href="{{ route('login') }}" class="nx-link underline underline-offset-2">Log in</a>
+                @if (Route::has('register'))
+                    <a href="{{ route('register') }}" class="nx-link underline underline-offset-2 ms-2">Register</a>
+                @endif
             @endauth
         </div>
     </header>
