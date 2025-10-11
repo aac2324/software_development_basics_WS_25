@@ -80,6 +80,7 @@
                 @endif
             @endauth
         </div>
+
     </header>
 
     <main class="max-w-6xl mx-auto px-6 py-6 bg-white/5 rounded-2xl shadow-inner">
